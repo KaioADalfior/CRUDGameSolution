@@ -11,7 +11,49 @@ namespace CRUDGameSolution.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            PopularLVs();
+        }
 
+        protected void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            Cadastrar();
+            PopularLVs();
+        }
+
+        protected void Cadastrar()
+        {
+            try
+            {
+                string descricao = txtDescricao.Text;
+
+                if (descricao != "")
+                {
+                    Raca novaRaca = new Raca();
+                    novaRaca.Descricao = descricao;
+
+                    string mensagem = DAOs.RacaDAO.CadastrarRacas(novaRaca);
+
+                    txtDescricao.Text = "";
+                    
+                    lblMensagem.InnerText = mensagem;
+                }
+            }
+            catch(Exception ex)
+            {
+                lblMensagem.InnerText = "Raça não cadastrada. Erro na função FrmRaca.Cadastrar(): " + ex.Message;
+            }
+        }
+
+        private void PopularLVRacas(List<Raca> racas)
+        {
+            lvRacas.DataSource = racas;
+            lvRacas.DataBind();
+        }
+
+        private void PopularLVs()
+        {
+            var racas = DAOs.RacaDAO.ListarRacas();
+            PopularLVRacas(racas);
         }
     }
 }

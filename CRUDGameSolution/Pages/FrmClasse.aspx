@@ -1,18 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FrmRaca.aspx.cs" MasterPageFile="~/Site.Master"  Inherits="CRUDGameSolution.Pages.FrmRaca" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master"  CodeBehind="FrmClasse.aspx.cs" Inherits="CRUDGameSolution.Pages.FrmClasses" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <br />
-    <h1>Gerenciar Raças</h1>
+    <h1>Gerenciar Classes</h1>
         <div>
             <a href="Default.aspx">Início</a>
         </div>
 
         <fieldset>
-            <legend>Criar Nova Raça</legend>
+            <legend>Criar Nova Classe</legend>
 
             <p>
-                <label>Nome da Raça:</label>
+                <label>Nome da Classe:</label>
                 <asp:TextBox runat="server" id="txtDescricao" />
             </p>
             <p>
@@ -25,7 +25,7 @@
             </p>
         </fieldset>
 
-    <h2>Raças cadastradas</h2>
+    <h2>Classes Cadastradas</h2>
 
         <table border="1">
             <tr>
@@ -34,11 +34,11 @@
                 <th>Ações</th>
             </tr>
 
-            <asp:ListView runat="server" ID="lvRacas">
+            <asp:ListView runat="server" ID="lvClasses">
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <%# Eval("idRaca") %>
+                            <%# Eval("idClasse") %>
                         </td>
                         <td>
                             <%# Eval("Descricao") %>
@@ -55,5 +55,3 @@
         </table>
 
 </asp:Content>
-
-

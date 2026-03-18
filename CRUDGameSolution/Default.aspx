@@ -4,4 +4,5 @@
 
     <br />
     <a href="Pages/FrmRaca.aspx">Cadastrar Raças</a>
+    <a href="Pages/FrmClasse.aspx">Cadastrar Classes</a>
 </asp:Content>
