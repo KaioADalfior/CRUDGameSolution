@@ -46,7 +46,21 @@ namespace CRUDGameSolution.Pages
 
         protected void Cadastrar()
         {
+            string nome = txtNome.Text;
+            string nivel = txtNivel.Text;
+            string sexo = txtSexo.Text;
 
+            //refatorar os index para pegar as DDLs.
+
+            if(nome != "" && nivel != "" && sexo != "")
+            {
+                lblMensagem.Text = "Preencha todos os campos!";
+                lblMensagem.CssClass = "text-danger";
+            }
+
+
+
+            
         }
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
