@@ -1,0 +1,40 @@
+CREATE TABLE Racas(
+	idRaca INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Descricao VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Classes(
+	idClasse INT PRIMARY KEY NOT NULL IDENTITY,
+	Descricao VARCHAR (255) NOT NULL
+);
+
+CREATE TABLE Habilidades (
+	idHabilidade INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Descricao VARCHAR(255) not null
+);
+
+CREATE TABLE Subclasses(
+	idSubclasse INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	Descricao VARCHAR (255) NOT NULL,
+	idClasse INT FOREIGN KEY REFERENCES Classes (idClasse)
+);
+
+CREATE TABLE Atributos (
+	idAtributo INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	Forca INT NOT NULL,
+	Destreza INT NOT NULL,
+	Sabedoria INT NOT NULL,
+	Constituicao INT NOT NULL,
+	Inteligencia INT NOT NULL,
+	Carisma INT NOT NULL
+);
+
+CREATE TABLE Aparencias(
+	idAparencia INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	Peso DECIMAL (12,2) NOT NULL,
+	Altura DECIMAL (12,2) NOT NULL,
+	CorCabelo VARCHAR (255) NOT NULL,
+	EstiloCabelo VARCHAR (255) NOT NULL,
+	CorOlho VARCHAR (255) NOT NULL,
+	CorPele VARCHAR (255) NOT NULL,
+);

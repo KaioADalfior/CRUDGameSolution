@@ -6,10 +6,12 @@
     <edmx:Diagrams>
       <Diagram DiagramId="96046d1c641c4af3b5afcf6cda466938" Name="Diagram1">
         <EntityTypeShape EntityType="RPGDBModel.Raca" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RPGDBModel.Classe" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="RPGDBModel.Subclasse" Width="1.5" PointX="3.375" PointY="2.875" />
+        <EntityTypeShape EntityType="RPGDBModel.Classe" Width="1.5" PointX="2.625" PointY="0.75" />
+        <EntityTypeShape EntityType="RPGDBModel.Subclasse" Width="1.5" PointX="2.625" PointY="2.625" />
         <AssociationConnector Association="RPGDBModel.FK__Subclasse__idCla__49C3F6B7" />
-        <EntityTypeShape EntityType="RPGDBModel.Habilidade" Width="1.5" PointX="0.625" PointY="3" />
+        <EntityTypeShape EntityType="RPGDBModel.Habilidade" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="RPGDBModel.Aparencia" Width="1.5" PointX="6.25" PointY="0.75" />
+        <EntityTypeShape EntityType="RPGDBModel.Atributo" Width="1.5" PointX="4.5" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

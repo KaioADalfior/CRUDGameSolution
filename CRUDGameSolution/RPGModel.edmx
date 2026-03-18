@@ -5,6 +5,30 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RPGDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aparencias">
+          <Key>
+            <PropertyRef Name="idAparencia" />
+          </Key>
+          <Property Name="idAparencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Peso" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Altura" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="CorCabelo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EstiloCabelo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CorOlho" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CorPele" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Atributos">
+          <Key>
+            <PropertyRef Name="idAtributo" />
+          </Key>
+          <Property Name="idAtributo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Forca" Type="int" Nullable="false" />
+          <Property Name="Destreza" Type="int" Nullable="false" />
+          <Property Name="Sabedoria" Type="int" Nullable="false" />
+          <Property Name="Constituicao" Type="int" Nullable="false" />
+          <Property Name="Inteligencia" Type="int" Nullable="false" />
+          <Property Name="Carisma" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Classes">
           <Key>
             <PropertyRef Name="idClasse" />
@@ -47,6 +71,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RPGDBModelStoreContainer">
+          <EntitySet Name="Aparencias" EntityType="Self.Aparencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Atributos" EntityType="Self.Atributos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Habilidades" EntityType="Self.Habilidades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Racas" EntityType="Self.Racas" Schema="dbo" store:Type="Tables" />
@@ -76,6 +102,8 @@
             <End Role="Subclasses" EntitySet="Subclasses" />
           </AssociationSet>
           <EntitySet Name="Habilidades" EntityType="RPGDBModel.Habilidade" />
+          <EntitySet Name="Aparencias" EntityType="RPGDBModel.Aparencia" />
+          <EntitySet Name="Atributos" EntityType="RPGDBModel.Atributo" />
         </EntityContainer>
         <EntityType Name="Classe">
           <Key>
@@ -113,6 +141,30 @@
           <Property Name="idHabilidade" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descricao" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Aparencia">
+          <Key>
+            <PropertyRef Name="idAparencia" />
+          </Key>
+          <Property Name="idAparencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Peso" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="Altura" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="CorCabelo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EstiloCabelo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CorOlho" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CorPele" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Atributo">
+          <Key>
+            <PropertyRef Name="idAtributo" />
+          </Key>
+          <Property Name="idAtributo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Forca" Type="Int32" Nullable="false" />
+          <Property Name="Destreza" Type="Int32" Nullable="false" />
+          <Property Name="Sabedoria" Type="Int32" Nullable="false" />
+          <Property Name="Constituicao" Type="Int32" Nullable="false" />
+          <Property Name="Inteligencia" Type="Int32" Nullable="false" />
+          <Property Name="Carisma" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -149,6 +201,32 @@
               <MappingFragment StoreEntitySet="Habilidades">
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
                 <ScalarProperty Name="idHabilidade" ColumnName="idHabilidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aparencias">
+            <EntityTypeMapping TypeName="RPGDBModel.Aparencia">
+              <MappingFragment StoreEntitySet="Aparencias">
+                <ScalarProperty Name="CorPele" ColumnName="CorPele" />
+                <ScalarProperty Name="CorOlho" ColumnName="CorOlho" />
+                <ScalarProperty Name="EstiloCabelo" ColumnName="EstiloCabelo" />
+                <ScalarProperty Name="CorCabelo" ColumnName="CorCabelo" />
+                <ScalarProperty Name="Altura" ColumnName="Altura" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="idAparencia" ColumnName="idAparencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Atributos">
+            <EntityTypeMapping TypeName="RPGDBModel.Atributo">
+              <MappingFragment StoreEntitySet="Atributos">
+                <ScalarProperty Name="Carisma" ColumnName="Carisma" />
+                <ScalarProperty Name="Inteligencia" ColumnName="Inteligencia" />
+                <ScalarProperty Name="Constituicao" ColumnName="Constituicao" />
+                <ScalarProperty Name="Sabedoria" ColumnName="Sabedoria" />
+                <ScalarProperty Name="Destreza" ColumnName="Destreza" />
+                <ScalarProperty Name="Forca" ColumnName="Forca" />
+                <ScalarProperty Name="idAtributo" ColumnName="idAtributo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
