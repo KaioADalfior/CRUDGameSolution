@@ -17,8 +17,8 @@ namespace CRUDGameSolution.DAOs
                     ctx.Classes.Add(novaClasse);
                     ctx.SaveChanges();
 
-                    mensagem = "Classe " + novaClasse.Descricao + " cadastrada com sucesso!";
                 }
+                mensagem = "Classe " + novaClasse.Descricao + " cadastrada com sucesso!";
             }
             catch(Exception ex)
             {

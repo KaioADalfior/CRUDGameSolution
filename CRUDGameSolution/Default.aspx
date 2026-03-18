@@ -3,6 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <br />
-    <a href="Pages/FrmRaca.aspx">Cadastrar Raças</a>
-    <a href="Pages/FrmClasse.aspx">Cadastrar Classes</a>
+    <a href="Pages/FrmRaca.aspx">Cadastrar Raças</a> <br />
+    <a href="Pages/FrmClasse.aspx">Cadastrar Classes</a> <br />
+    <a href="Pages/FrmSubclasse.aspx">Cadastrar Subclasses</a> <br />
 </asp:Content>

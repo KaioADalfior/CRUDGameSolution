@@ -27,5 +27,6 @@ namespace CRUDGameSolution
     
         public virtual DbSet<Raca> Racas { get; set; }
         public virtual DbSet<Classe> Classes { get; set; }
+        public virtual DbSet<Subclasse> Subclasses { get; set; }
     }
 }

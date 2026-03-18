@@ -19,9 +19,34 @@
           <Property Name="idRaca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descricao" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <EntityType Name="Subclasses">
+          <Key>
+            <PropertyRef Name="idSubclasse" />
+          </Key>
+          <Property Name="idSubclasse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="idClasse" Type="int" />
+        </EntityType>
+        <Association Name="FK__Subclasse__idCla__49C3F6B7">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="0..1" />
+          <End Role="Subclasses" Type="Self.Subclasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="idClasse" />
+            </Principal>
+            <Dependent Role="Subclasses">
+              <PropertyRef Name="idClasse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RPGDBModelStoreContainer">
           <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Racas" EntityType="Self.Racas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subclasses" EntityType="Self.Subclasses" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Subclasse__idCla__49C3F6B7" Association="Self.FK__Subclasse__idCla__49C3F6B7">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Subclasses" EntitySet="Subclasses" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -37,6 +62,11 @@
         <EntityContainer Name="RPGDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Racas" EntityType="RPGDBModel.Raca" />
           <EntitySet Name="Classes" EntityType="RPGDBModel.Classe" />
+          <EntitySet Name="Subclasses" EntityType="RPGDBModel.Subclasse" />
+          <AssociationSet Name="FK__Subclasse__idCla__49C3F6B7" Association="RPGDBModel.FK__Subclasse__idCla__49C3F6B7">
+            <End Role="Classe" EntitySet="Classes" />
+            <End Role="Subclasses" EntitySet="Subclasses" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Classe">
           <Key>
@@ -44,7 +74,29 @@
           </Key>
           <Property Name="idClasse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descricao" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Subclasses" Relationship="RPGDBModel.FK__Subclasse__idCla__49C3F6B7" FromRole="Classe" ToRole="Subclasses" />
         </EntityType>
+        <EntityType Name="Subclasse">
+          <Key>
+            <PropertyRef Name="idSubclasse" />
+          </Key>
+          <Property Name="idSubclasse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="idClasse" Type="Int32" />
+          <NavigationProperty Name="Classes" Relationship="RPGDBModel.FK__Subclasse__idCla__49C3F6B7" FromRole="Subclasses" ToRole="Classe" />
+        </EntityType>
+        <Association Name="FK__Subclasse__idCla__49C3F6B7">
+          <End Type="RPGDBModel.Classe" Role="Classe" Multiplicity="0..1" />
+          <End Type="RPGDBModel.Subclasse" Role="Subclasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classe">
+              <PropertyRef Name="idClasse" />
+            </Principal>
+            <Dependent Role="Subclasses">
+              <PropertyRef Name="idClasse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -64,6 +116,15 @@
               <MappingFragment StoreEntitySet="Classes">
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
                 <ScalarProperty Name="idClasse" ColumnName="idClasse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subclasses">
+            <EntityTypeMapping TypeName="RPGDBModel.Subclasse">
+              <MappingFragment StoreEntitySet="Subclasses">
+                <ScalarProperty Name="idClasse" ColumnName="idClasse" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="idSubclasse" ColumnName="idSubclasse" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

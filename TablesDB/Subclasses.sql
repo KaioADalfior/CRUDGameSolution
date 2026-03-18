@@ -1,0 +1,5 @@
+﻿CREATE TABLE Subclasses(
+	idSubclasse INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	Descricao VARCHAR (255) NOT NULL,
+	idClasse INT FOREIGN KEY REFERENCES Classes (idClasse)
+);

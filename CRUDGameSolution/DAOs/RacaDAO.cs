@@ -18,8 +18,8 @@ namespace CRUDGameSolution.DAOs
 
                     ctx.SaveChanges();
 
-                    mensagem = "Raça " + novaRaca.Descricao + " cadastrada com sucesso!";
                 }
+                mensagem = "Raça " + novaRaca.Descricao + " cadastrada com sucesso!";
             }
             catch (Exception ex)
             {
