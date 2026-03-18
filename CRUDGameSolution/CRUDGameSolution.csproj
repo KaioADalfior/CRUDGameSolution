@@ -141,6 +141,7 @@
       <LastGenOutput>RPGModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Pages\FrmClasse.aspx" />
+    <Content Include="Pages\FrmHabilidade.aspx" />
     <Content Include="Pages\FrmSubclasse.aspx" />
     <Content Include="RPGModel.edmx.diagram">
       <DependentUpon>RPGModel.edmx</DependentUpon>
@@ -212,6 +213,7 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAOs\ClasseDAO.cs" />
+    <Compile Include="DAOs\HabilidadeDAO.cs" />
     <Compile Include="DAOs\RacaDAO.cs" />
     <Compile Include="DAOs\SubclasseDAO.cs" />
     <Compile Include="Default.aspx.cs">
@@ -224,12 +226,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Habilidade.cs">
+      <DependentUpon>RPGModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Pages\FrmClasse.aspx.cs">
       <DependentUpon>FrmClasse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\FrmClasse.aspx.designer.cs">
       <DependentUpon>FrmClasse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FrmHabilidade.aspx.cs">
+      <DependentUpon>FrmHabilidade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\FrmHabilidade.aspx.designer.cs">
+      <DependentUpon>FrmHabilidade.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\FrmRaca.aspx.cs">
       <DependentUpon>FrmRaca.aspx</DependentUpon>

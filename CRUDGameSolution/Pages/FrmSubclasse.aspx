@@ -53,7 +53,7 @@
                     </td>
 
                     <td>
-                        <%# Eval("idClasse") %>
+                        <%# Eval("Classes.Descricao") %>
                     </td>
 
                     <td>

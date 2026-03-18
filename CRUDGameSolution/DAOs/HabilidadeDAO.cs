@@ -5,9 +5,9 @@ using System.Web;
 
 namespace CRUDGameSolution.DAOs
 {
-    public class SubclasseDAO
+    public class HabilidadeDAO
     {
-        public static string CadastrarSubclasse(Subclasse novaSubclasse)
+        public static string CadastrarHabilidades(Habilidade novaHabilidade)
         {
             string mensagem = "";
 
@@ -15,37 +15,39 @@ namespace CRUDGameSolution.DAOs
             {
                 using (var ctx = new RPGDBEntities())
                 {
-                    ctx.Subclasses.Add(novaSubclasse);
+                    ctx.Habilidades.Add(novaHabilidade);
                     ctx.SaveChanges();
                 }
-
-                mensagem = "Subclasse " + novaSubclasse.Descricao + " cadastrada com sucesso!";
-
+                
+                mensagem = "Habilidade " + novaHabilidade.Descricao + " cadastrada com sucesso!";
             }
-            catch(Exception ex)
+
+
+            catch (Exception ex)
             {
                 mensagem = ex.Message;
             }
-
             return mensagem;
         }
 
-        public static List<Subclasse> ListarSubclasses()
+        public static List<Habilidade> ListarHabilidades()
         {
-            List<Subclasse> lista = null;
+            List<Habilidade> habilidades = null;
 
             try
             {
-                using (var ctx = new RPGDBEntities())
+                using(var ctx = new RPGDBEntities())
                 {
-                    lista = ctx.Subclasses.Include("Classes").OrderBy(x => x.Descricao).ToList();
+                    habilidades = ctx.Habilidades.OrderBy(x => x.Descricao).ToList();
                 }
             }
             catch(Exception ex)
             {
 
             }
-            return lista;
+            return habilidades;
         }
     }
+
+
 }

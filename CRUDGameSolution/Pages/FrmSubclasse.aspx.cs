@@ -15,12 +15,14 @@ namespace CRUDGameSolution.Pages
             {
                 List<Classe> classes = DAOs.ClasseDAO.ListarClasses();
                 PreencherDDLClasse(classes);
+                PopularLVs();
             }
         }
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             Cadastrar();
+            PopularLVs();
         }
 
         protected void Cadastrar()
@@ -63,6 +65,18 @@ namespace CRUDGameSolution.Pages
             DDLClasse.DataValueField = "idClasse";
             DDLClasse.DataBind();
             DDLClasse.Items.Insert(0, "Selecione...");
+        }
+
+        private void PopularLVSubclasses(List<Subclasse> lista)
+        {
+            lvSubclasses.DataSource = lista;
+            lvSubclasses.DataBind();
+        }
+
+        private void PopularLVs()
+        {
+            var lista = DAOs.SubclasseDAO.ListarSubclasses();
+            PopularLVSubclasses(lista);
         }
     }
 }
