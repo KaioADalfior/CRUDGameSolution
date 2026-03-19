@@ -14,6 +14,12 @@ namespace CRUDGameSolution
     
     public partial class Aparencia
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Aparencia()
+        {
+            this.Personagens = new HashSet<Personagem>();
+        }
+    
         public int idAparencia { get; set; }
         public decimal Peso { get; set; }
         public decimal Altura { get; set; }
@@ -21,5 +27,8 @@ namespace CRUDGameSolution
         public string EstiloCabelo { get; set; }
         public string CorOlho { get; set; }
         public string CorPele { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Personagem> Personagens { get; set; }
     }
 }

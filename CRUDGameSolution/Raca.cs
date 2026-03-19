@@ -14,7 +14,16 @@ namespace CRUDGameSolution
     
     public partial class Raca
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Raca()
+        {
+            this.Personagens = new HashSet<Personagem>();
+        }
+    
         public int idRaca { get; set; }
         public string Descricao { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Personagem> Personagens { get; set; }
     }
 }

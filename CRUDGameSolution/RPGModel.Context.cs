@@ -31,5 +31,6 @@ namespace CRUDGameSolution
         public virtual DbSet<Habilidade> Habilidades { get; set; }
         public virtual DbSet<Aparencia> Aparencias { get; set; }
         public virtual DbSet<Atributo> Atributos { get; set; }
+        public virtual DbSet<Personagem> Personagens { get; set; }
     }
 }

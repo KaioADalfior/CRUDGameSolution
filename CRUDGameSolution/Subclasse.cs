@@ -14,10 +14,18 @@ namespace CRUDGameSolution
     
     public partial class Subclasse
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Subclasse()
+        {
+            this.Personagens = new HashSet<Personagem>();
+        }
+    
         public int idSubclasse { get; set; }
         public string Descricao { get; set; }
         public Nullable<int> idClasse { get; set; }
     
         public virtual Classe Classes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Personagem> Personagens { get; set; }
     }
 }

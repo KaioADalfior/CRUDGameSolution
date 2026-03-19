@@ -99,21 +99,46 @@ namespace CRUDGameSolution.Pages
 
                     mensagem = DAOs.AparenciaDAO.CadastrarAparencia(novaAparencia);
 
-                    //cadastrar personagem aqui
-
-
-                    
                     //personagem
                     string nome = txtNome.Text;
                     string nivel = txtNivel.Text;
                     string sexo = txtSexo.Text;
-
-                    //ddls de raca e subclasse
                     int indexRaca = ddlRaca.SelectedIndex;
                     int indexSubclasse = ddlSubclasse.SelectedIndex;
 
 
-                    //refatorar os index para pegar as DDLs.       
+                    //CORRIGIR O FLUXO DA DDL
+                    if(indexRaca == 0 && indexSubclasse == 0)
+                    {
+                        lblMensagem.Text = 
+                            "Você precisa selecionar Raça e Classe!";
+                    }
+
+                    if (nome != "" && nivel != "" && sexo != "")
+                    {
+                        Personagem novoPersonagem = new Personagem();
+
+                        novoPersonagem.Nome = nome;
+                        novoPersonagem.Nivel = Convert.ToInt32(nivel);
+                        novoPersonagem.Sexo = sexo;
+
+                        int idRaca = Convert.ToInt32(ddlRaca.SelectedValue);
+                        novoPersonagem.idRaca = idRaca;
+
+                        int idSubclasse = Convert.ToInt32(ddlSubclasse.SelectedValue);
+                        novoPersonagem.idSubclasse = idSubclasse;
+
+                        novoPersonagem.idAtributo = novoAtributo.idAtributo;
+                        novoPersonagem.idAparencia = novaAparencia.idAparencia;
+
+                        mensagem = DAOs.PersonagemDAO.CadastrarPersonagem(novoPersonagem);
+
+                        lblMensagem.Text = "PERSONAGEM CADASTRADO COM SUCESSO!";
+                    }
+
+                    
+
+
                 }
 
             }

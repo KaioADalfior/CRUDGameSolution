@@ -12,6 +12,11 @@
         <EntityTypeShape EntityType="RPGDBModel.Habilidade" Width="1.5" PointX="0.75" PointY="2.375" />
         <EntityTypeShape EntityType="RPGDBModel.Aparencia" Width="1.5" PointX="6.25" PointY="0.75" />
         <EntityTypeShape EntityType="RPGDBModel.Atributo" Width="1.5" PointX="4.5" PointY="0.75" />
+        <EntityTypeShape EntityType="RPGDBModel.Personagem" Width="1.5" PointX="8.125" PointY="0.875" />
+        <AssociationConnector Association="RPGDBModel.FK__Personage__idApa__19DFD96B" />
+        <AssociationConnector Association="RPGDBModel.FK__Personage__idAtr__18EBB532" />
+        <AssociationConnector Association="RPGDBModel.FK__Personage__idRac__17036CC0" />
+        <AssociationConnector Association="RPGDBModel.FK__Personage__idSub__17F790F9" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
