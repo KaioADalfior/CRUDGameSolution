@@ -29,5 +29,26 @@ namespace CRUDGameSolution.DAOs
             }
             return mensagem;
         }
+
+        public static List<Personagem> ListarPersonagens()
+        {
+            try
+            {
+                using (var ctx = new RPGDBEntities())
+                {
+                    return ctx.Personagens
+                        .Include("Racas")
+                        .Include("Subclasses")
+                        .Include("Subclasses.Classes")
+                        .Include("Atributos")
+                        .Include("Aparencias")
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Personagem>();
+            }
+        }
     }
 }

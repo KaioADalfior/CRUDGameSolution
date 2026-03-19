@@ -11,7 +11,14 @@ namespace CRUDGameSolution.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CarregarCartas();
+        }
 
+        private void CarregarCartas()
+        {
+            List<Personagem> personagens = DAOs.PersonagemDAO.ListarPersonagens();
+            lvCartas.DataSource = personagens;
+            lvCartas.DataBind();
         }
     }
 }

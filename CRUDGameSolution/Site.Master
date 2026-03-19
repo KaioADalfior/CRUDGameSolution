@@ -7,60 +7,188 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - RPG de Cartas</title>
+
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
+
+    <%-- Bootstrap CDN como garantia, antes do Tailwind --%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <style>
-        body {
-            background-color: #12121f;
-            color: #ddd;
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet" />
+
+    <%-- Tailwind: config ANTES do script --%>
+    <script>
+        tailwind.config = {
+            corePlugins: { preflight: false },
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#c9a84c',
+                        goldlt: '#e8c96a',
+                        ink: '#0d0d1a',
+                        inklt: '#12121f',
+                        parchment: '#1a1a2e',
+                        stone: '#1e1e2e',
+                    },
+                    fontFamily: {
+                        display: ['Cinzel', 'serif'],
+                        body: ['Crimson Text', 'Georgia', 'serif'],
+                    },
+                    boxShadow: {
+                        gold: '0 0 18px rgba(201,168,76,0.35)',
+                        glow: '0 0 40px rgba(201,168,76,0.15)',
+                    }
+                }
+            }
         }
-        .navbar-inverse {
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* ── Base ─────────────────────────────────────────── */
+        body {
             background-color: #0d0d1a;
-            border-color: #c9a84c;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: #ddd;
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 17px;
+        }
+
+        /* ── FIX: navbar collapse vs Tailwind ────────────── */
+        @media (min-width: 768px) {
+            .navbar-collapse {
+                display: block !important;
+            }
+            .navbar-collapse.collapse {
+                display: block !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+        }
+
+        /* ── Navbar ───────────────────────────────────────── */
+        .navbar-inverse {
+            background-color: #080812;
+            border-bottom: 1px solid #c9a84c;
+            box-shadow: 0 2px 24px rgba(201,168,76,0.18);
         }
         .navbar-inverse .navbar-brand {
-            color: #c9a84c;
-            font-weight: bold;
-            letter-spacing: 1px;
+            color: #c9a84c !important;
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 12px rgba(201,168,76,0.5);
+            transition: text-shadow .3s;
         }
         .navbar-inverse .navbar-brand:hover {
-            color: #e8c96a;
+            text-shadow: 0 0 22px rgba(232,201,106,0.8);
         }
         .navbar-inverse .nav > li > a {
-            color: #cccccc;
+            color: #aaa !important;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: color .2s;
         }
-        .navbar-inverse .nav > li > a:hover {
-            color: #c9a84c;
-            background-color: transparent;
+        .navbar-inverse .nav > li > a:hover,
+        .navbar-inverse .nav > li > a:focus {
+            color: #c9a84c !important;
+            background-color: transparent !important;
         }
         .navbar-inverse .nav > li.active > a {
-            background-color: #c9a84c;
-            color: #0d0d1a;
+            background-color: transparent !important;
+            color: #c9a84c !important;
+            border-bottom: 2px solid #c9a84c;
         }
+
+        /* ── Dropdown ─────────────────────────────────────── */
         .navbar-inverse .dropdown-menu {
-            background-color: #1a1a2e;
-            border-color: #333;
+            background-color: #0f0f1e;
+            border: 1px solid #c9a84c44;
+            border-radius: 4px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 16px rgba(201,168,76,0.1);
+            padding: 6px 0;
         }
         .navbar-inverse .dropdown-menu > li > a {
-            color: #cccccc;
+            color: #bbb !important;
+            font-family: 'Crimson Text', serif;
+            font-size: 15px;
+            padding: 8px 20px;
+            letter-spacing: .5px;
+            transition: all .2s;
         }
         .navbar-inverse .dropdown-menu > li > a:hover {
-            background-color: #c9a84c;
-            color: #0d0d1a;
+            background-color: rgba(201,168,76,0.1) !important;
+            color: #c9a84c !important;
+            padding-left: 26px;
         }
+        .navbar-inverse .dropdown-menu .divider {
+            background-color: #c9a84c33;
+        }
+        .navbar-inverse .dropdown-toggle .caret {
+            border-top-color: #c9a84c;
+        }
+
+        /* ── Conteúdo ─────────────────────────────────────── */
         .container.body-content {
-            padding-top: 80px;
+            padding-top: 86px;
+            padding-bottom: 40px;
         }
-        footer p {
-            color: #666;
-            text-align: center;
-        }
+
+        /* ── Divisor dourado ──────────────────────────────── */
         hr {
-            border-color: #2a2a3e;
+            border: none;
+            border-top: 1px solid #c9a84c33;
+            margin: 40px 0 20px;
         }
+
+        /* ── Footer ───────────────────────────────────────── */
+        footer p {
+            color: #555;
+            text-align: center;
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .footer-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            color: #c9a84c66;
+            font-size: 18px;
+        }
+        .footer-ornament::before,
+        .footer-ornament::after {
+            content: '';
+            height: 1px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, #c9a84c55);
+        }
+        .footer-ornament::after {
+            background: linear-gradient(270deg, transparent, #c9a84c55);
+        }
+
+        /* ── Animação de entrada ──────────────────────────── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .body-content {
+            animation: fadeInUp .5s ease both;
+        }
+
+        /* ── Scrollbar temática ───────────────────────────── */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0d0d1a; }
+        ::-webkit-scrollbar-thumb { background: #c9a84c55; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c9a84c99; }
     </style>
 </head>
 <body>
@@ -82,6 +210,7 @@
             </Scripts>
         </asp:ScriptManager>
 
+        <!-- ═══ NAVBAR ═══════════════════════════════════════ -->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -91,59 +220,39 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">
-                        <span class="glyphicon glyphicon-book"></span> RPG de Cartas
+                        ✦ RPGBattle
                     </a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-
-                        <!-- MENU CADASTROS -->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                                <span class="glyphicon glyphicon-cog"></span> Cadastros
-                                <span class="caret"></span>
+                                ⚙ Cadastros <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a runat="server" href="~/Pages/FrmRaca.aspx">
-                                        <span class="glyphicon glyphicon-globe"></span> Raças
-                                    </a>
-                                </li>
-                                <li>
-                                    <a runat="server" href="~/Pages/FrmClasse.aspx">
-                                        <span class="glyphicon glyphicon-education"></span> Classes
-                                    </a>
-                                </li>
-                                <li>
-                                    <a runat="server" href="~/Pages/FrmSubclasse.aspx">
-                                        <span class="glyphicon glyphicon-th-list"></span> Subclasses
-                                    </a>
-                                </li>
-                                <li>
-                                    <a runat="server" href="~/Pages/FrmHabilidade.aspx">
-                                        <span class="glyphicon glyphicon-flash"></span> Habilidades
-                                    </a>
-                                </li>
+                                <li><a runat="server" href="~/Pages/FrmRaca.aspx">🌍 Raças</a></li>
+                                <li><a runat="server" href="~/Pages/FrmClasse.aspx">📚 Classes</a></li>
+                                <li><a runat="server" href="~/Pages/FrmSubclasse.aspx">📋 Subclasses</a></li>
+                                <li><a runat="server" href="~/Pages/FrmHabilidade.aspx">⚡ Habilidades</a></li>
                                 <li class="divider"></li>
-                                <li>
-                                    <a runat="server" href="~/Pages/FrmPersonagem.aspx">
-                                        <span class="glyphicon glyphicon-knight"></span> Personagens
-                                    </a>
-                                </li>
+                                <li><a runat="server" href="~/Pages/FrmPersonagem.aspx">⚔ Personagens</a></li>
                             </ul>
                         </li>
-                        <li><a runat="server" href="~/Pages/FrmCartas.aspx">Cartas</a></li>
+                        <li><a runat="server" href="~/Pages/FrmCartas.aspx">🃏 Cartas</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
+        <!-- ═══ CONTEÚDO ══════════════════════════════════════ -->
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
+
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> — RPG de Cartas. Feito para aventureiros.</p>
+                <div class="footer-ornament">✦</div>
+                <p>&copy; <%: DateTime.Now.Year %> — RPG de Cartas &nbsp;·&nbsp; Feito para aventureiros.</p>
             </footer>
         </div>
     </form>

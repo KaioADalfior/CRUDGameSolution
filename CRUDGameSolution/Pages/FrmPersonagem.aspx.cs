@@ -79,6 +79,8 @@ namespace CRUDGameSolution.Pages
             int idClasse = Convert.ToInt32(ddlClasse.SelectedValue);
             PreencherDDLSubclasse(idClasse);
         }
+        
+
 
         protected void Cadastrar()
         {
