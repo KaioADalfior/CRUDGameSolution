@@ -51,7 +51,7 @@ namespace CRUDGameSolution.Pages
 
         protected void Cadastrar()
         {
-         
+
             //atributos
 
             string forca = txtForca.Text;
@@ -61,7 +61,7 @@ namespace CRUDGameSolution.Pages
             string inteligencia = txtInteligencia.Text;
             string carisma = txtCarisma.Text;
 
-            if(forca != "" && destreza != "" && sabedoria != "" && 
+            if (forca != "" && destreza != "" && sabedoria != "" &&
                 constituicao != "" && inteligencia != "" && carisma != "")
             {
                 Atributo novoAtributo = new Atributo();
@@ -76,7 +76,7 @@ namespace CRUDGameSolution.Pages
                 string mensagem =
                     DAOs.AtributoDAO.CadastrarAtributo(novoAtributo);
 
-                
+
                 //aparencia
                 string peso = txtPeso.Text;
                 string altura = txtAltura.Text;
@@ -85,7 +85,7 @@ namespace CRUDGameSolution.Pages
                 string corOlhos = txtCorOlho.Text;
                 string corPele = txtCorPele.Text;
 
-                if(peso != "" && altura != "" && corCabelo != "" &&
+                if (peso != "" && altura != "" && corCabelo != "" &&
                     estiloCabelo != "" && corOlhos != "" && corPele != "")
                 {
                     Aparencia novaAparencia = new Aparencia();
@@ -108,14 +108,17 @@ namespace CRUDGameSolution.Pages
 
 
                     //CORRIGIR O FLUXO DA DDL
-                    if(indexRaca == 0 && indexSubclasse == 0)
+                    if (indexRaca == 0 || indexSubclasse == 0)
                     {
-                        lblMensagem.Text = 
-                            "Você precisa selecionar Raça e Classe!";
+
+                        lblMensagem.Text =
+                               "Você precisa selecionar Raça e Subclasse!";
+                        return;
                     }
 
                     if (nome != "" && nivel != "" && sexo != "")
                     {
+                       
                         Personagem novoPersonagem = new Personagem();
 
                         novoPersonagem.Nome = nome;
@@ -135,16 +138,9 @@ namespace CRUDGameSolution.Pages
 
                         lblMensagem.Text = "PERSONAGEM CADASTRADO COM SUCESSO!";
                     }
-
-                    
-
-
                 }
 
             }
-
-
-              
         }
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
