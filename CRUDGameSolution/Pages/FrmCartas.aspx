@@ -13,6 +13,7 @@
             text-shadow: 0 0 30px rgba(201,168,76,0.3);
             margin-bottom: 4px;
         }
+
         .rpg-page-subtitle {
             font-family: 'Crimson Text', serif;
             font-style: italic;
@@ -21,19 +22,25 @@
             letter-spacing: 1px;
             margin-bottom: 24px;
         }
+
         .rpg-page-divider {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 28px;
         }
-        .rpg-page-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, #c9a84c33, transparent);
-        }
-        .rpg-page-divider span { color: #c9a84c66; font-size: 14px; }
+
+            .rpg-page-divider::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: linear-gradient(90deg, #c9a84c33, transparent);
+            }
+
+            .rpg-page-divider span {
+                color: #c9a84c66;
+                font-size: 14px;
+            }
 
         .rpg-btn-back {
             display: inline-flex;
@@ -52,11 +59,12 @@
             transition: all .2s;
             margin-bottom: 28px;
         }
-        .rpg-btn-back:hover {
-            color: #c9a84c;
-            border-color: #c9a84c44;
-            background: rgba(201,168,76,0.04);
-        }
+
+            .rpg-btn-back:hover {
+                color: #c9a84c;
+                border-color: #c9a84c44;
+                background: rgba(201,168,76,0.04);
+            }
 
         /* ── Grade de cartas ──────────────────────────────── */
         .cards-grid {
@@ -77,22 +85,35 @@
             transition: transform .3s, box-shadow .3s;
             box-shadow: 0 4px 24px rgba(0,0,0,0.5);
         }
-        .rpg-carta:hover {
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 24px rgba(201,168,76,0.12);
-        }
-        .rpg-carta::before,
-        .rpg-carta::after {
-            content: '';
-            position: absolute;
-            width: 20px; height: 20px;
-            border-color: #c9a84c88;
-            border-style: solid;
-            z-index: 2;
-            pointer-events: none;
-        }
-        .rpg-carta::before { top: 6px;    left: 6px;    border-width: 1px 0 0 1px; }
-        .rpg-carta::after  { bottom: 6px; right: 6px;   border-width: 0 1px 1px 0; }
+
+            .rpg-carta:hover {
+                transform: translateY(-6px) scale(1.01);
+                box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 24px rgba(201,168,76,0.12);
+            }
+
+            .rpg-carta::before,
+            .rpg-carta::after {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border-color: #c9a84c88;
+                border-style: solid;
+                z-index: 2;
+                pointer-events: none;
+            }
+
+            .rpg-carta::before {
+                top: 6px;
+                left: 6px;
+                border-width: 1px 0 0 1px;
+            }
+
+            .rpg-carta::after {
+                bottom: 6px;
+                right: 6px;
+                border-width: 0 1px 1px 0;
+            }
 
         /* ── Cabeçalho da carta ───────────────────────────── */
         .carta-header {
@@ -102,13 +123,16 @@
             text-align: center;
             position: relative;
         }
-        .carta-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 20%; right: 20%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #c9a84c66, transparent);
-        }
+
+            .carta-header::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 20%;
+                right: 20%;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, #c9a84c66, transparent);
+            }
 
         .carta-class-badge {
             display: inline-block;
@@ -143,23 +167,26 @@
 
         .carta-nivel {
             position: absolute;
-            top: 12px; right: 14px;
+            top: 12px;
+            right: 14px;
             font-family: 'Cinzel', serif;
             font-size: 10px;
             color: #e8c96a;
             letter-spacing: 1px;
         }
-        .carta-nivel span {
-            display: block;
-            font-size: 18px;
-            font-weight: 900;
-            line-height: 1;
-            text-shadow: 0 0 10px rgba(201,168,76,0.4);
-        }
+
+            .carta-nivel span {
+                display: block;
+                font-size: 18px;
+                font-weight: 900;
+                line-height: 1;
+                text-shadow: 0 0 10px rgba(201,168,76,0.4);
+            }
 
         .carta-icon {
             position: absolute;
-            top: 12px; left: 14px;
+            top: 12px;
+            left: 14px;
             font-size: 20px;
             opacity: .7;
         }
@@ -174,16 +201,18 @@
             color: #c9a84c55;
             font-size: 10px;
         }
-        .carta-ornament::before,
-        .carta-ornament::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #c9a84c22);
-        }
-        .carta-ornament::after {
-            background: linear-gradient(270deg, transparent, #c9a84c22);
-        }
+
+            .carta-ornament::before,
+            .carta-ornament::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, #c9a84c22);
+            }
+
+            .carta-ornament::after {
+                background: linear-gradient(270deg, transparent, #c9a84c22);
+            }
 
         /* ── Atributos ────────────────────────────────────── */
         .carta-atributos {
@@ -194,13 +223,17 @@
             border-top: 1px solid #1a1a28;
             border-bottom: 1px solid #1a1a28;
         }
+
         .attr-box {
             background-color: #13131f;
             padding: 10px 6px;
             text-align: center;
             transition: background-color .2s;
         }
-        .rpg-carta:hover .attr-box { background-color: #14142a; }
+
+        .rpg-carta:hover .attr-box {
+            background-color: #14142a;
+        }
 
         .attr-valor {
             font-family: 'Cinzel', serif;
@@ -210,6 +243,7 @@
             line-height: 1;
             text-shadow: 0 0 8px rgba(201,168,76,0.25);
         }
+
         .attr-nome {
             font-family: 'Cinzel', serif;
             font-size: 8px;
@@ -227,6 +261,7 @@
             gap: 5px;
             flex: 1;
         }
+
         .aparencia-row {
             display: flex;
             justify-content: space-between;
@@ -234,7 +269,11 @@
             border-bottom: 1px solid #1e1e2e;
             padding-bottom: 5px;
         }
-        .aparencia-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+            .aparencia-row:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
 
         .ap-key {
             font-family: 'Cinzel', serif;
@@ -243,6 +282,7 @@
             text-transform: uppercase;
             color: #7a7a9a;
         }
+
         .ap-val {
             font-family: 'Crimson Text', serif;
             font-size: 15px;
@@ -251,21 +291,49 @@
         }
 
         /* ── Rodapé da carta ──────────────────────────────── */
+        /* ── Botão batalhar ───────────────────────────────── */
         .carta-footer {
             background-color: #0d0d1a;
             border-top: 1px solid #c9a84c22;
-            padding: 8px 18px;
+            padding: 10px 18px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
         }
+
         .carta-footer-text {
             font-family: 'Cinzel', serif;
             font-size: 8px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: #c9a84c55;
+            color: #c9a84c33;
         }
+
+        .btn-batalhar {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #0d0d1a;
+            background-color: #c9a84c;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 14px;
+            text-decoration: none !important;
+            transition: all .2s;
+            cursor: pointer;
+        }
+
+            .btn-batalhar:hover {
+                background-color: #e8c96a;
+                box-shadow: 0 0 14px rgba(201,168,76,0.4);
+                transform: translateY(-1px);
+                color: #0d0d1a;
+            }
 
         /* ── Empty state ──────────────────────────────────── */
         .rpg-empty {
@@ -274,30 +342,39 @@
             padding: 80px 20px;
             color: #5a5a7a;
         }
-        .rpg-empty .icon { font-size: 48px; display: block; margin-bottom: 16px; opacity: .5; }
-        .rpg-empty p {
-            font-family: 'Crimson Text', serif;
-            font-style: italic;
-            font-size: 18px;
-        }
-        .rpg-empty a {
-            display: inline-block;
-            margin-top: 20px;
-            font-family: 'Cinzel', serif;
-            font-size: 11px;
-            letter-spacing: 2px;
-            color: #c9a84c99;
-            border: 1px solid #c9a84c44;
-            border-radius: 4px;
-            padding: 8px 20px;
-            text-decoration: none;
-            transition: all .2s;
-        }
-        .rpg-empty a:hover {
-            color: #c9a84c;
-            border-color: #c9a84c88;
-            background: rgba(201,168,76,0.05);
-        }
+
+            .rpg-empty .icon {
+                font-size: 48px;
+                display: block;
+                margin-bottom: 16px;
+                opacity: .5;
+            }
+
+            .rpg-empty p {
+                font-family: 'Crimson Text', serif;
+                font-style: italic;
+                font-size: 18px;
+            }
+
+            .rpg-empty a {
+                display: inline-block;
+                margin-top: 20px;
+                font-family: 'Cinzel', serif;
+                font-size: 11px;
+                letter-spacing: 2px;
+                color: #c9a84c99;
+                border: 1px solid #c9a84c44;
+                border-radius: 4px;
+                padding: 8px 20px;
+                text-decoration: none;
+                transition: all .2s;
+            }
+
+                .rpg-empty a:hover {
+                    color: #c9a84c;
+                    border-color: #c9a84c88;
+                    background: rgba(201,168,76,0.05);
+                }
     </style>
 
     <div style="max-width: 1100px; margin: 0 auto;">
@@ -386,9 +463,11 @@
                             </div>
                         </div>
 
-                        <%-- Rodapé --%>
+
                         <div class="carta-footer">
                             <span class="carta-footer-text">RPG de Cartas</span>
+                            <a class="btn-batalhar" href='<%# "FrmBatalha.aspx?id=" + Eval("idPersonagem") %>'>⚔ Batalhar
+                            </a>
                         </div>
 
                     </div>
