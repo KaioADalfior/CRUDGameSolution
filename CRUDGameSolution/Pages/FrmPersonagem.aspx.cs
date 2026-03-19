@@ -20,10 +20,14 @@ namespace CRUDGameSolution.Pages
         private void PreencherDDLs()
         {
             List<Raca> racas = DAOs.RacaDAO.ListarRacas();
-            List<Subclasse> subclasses = DAOs.SubclasseDAO.ListarSubclasses();
+            List<Classe> classes = DAOs.ClasseDAO.ListarClasses();
 
             PreencherDDLRaca(racas);
-            PreencherDDLSubclasse(subclasses);
+            PreencherDDLClasse(classes);
+
+            // Subclasse começa vazia até o usuário escolher uma classe
+            ddlSubclasse.Items.Clear();
+            ddlSubclasse.Items.Insert(0, "Selecione uma classe primeiro...");
         }
 
         private void PreencherDDLRaca(List<Raca> racas)
@@ -35,8 +39,33 @@ namespace CRUDGameSolution.Pages
             ddlRaca.Items.Insert(0, "Selecione...");
         }
 
-        private void PreencherDDLSubclasse(List<Subclasse> subclasses)
+        private void PreencherDDLClasse(List<Classe> classes)
         {
+            ddlClasse.DataSource = classes;
+            ddlClasse.DataTextField = "Descricao";
+            ddlClasse.DataValueField = "idClasse";
+            ddlClasse.DataBind();
+            ddlClasse.Items.Insert(0, "Selecione...");
+        }
+
+        private void PreencherDDLSubclasse(int idClasse)
+        {
+            ddlSubclasse.Items.Clear();
+
+            if (idClasse == 0)
+            {
+                ddlSubclasse.Items.Insert(0, "Selecione uma classe primeiro...");
+                return;
+            }
+
+            List<Subclasse> subclasses = DAOs.SubclasseDAO.ListarSubclassesPorClasse(idClasse);
+
+            if (subclasses.Count == 0)
+            {
+                ddlSubclasse.Items.Insert(0, "Nenhuma subclasse encontrada...");
+                return;
+            }
+
             ddlSubclasse.DataSource = subclasses;
             ddlSubclasse.DataTextField = "Descricao";
             ddlSubclasse.DataValueField = "idSubclasse";
@@ -44,16 +73,16 @@ namespace CRUDGameSolution.Pages
             ddlSubclasse.Items.Insert(0, "Selecione...");
         }
 
-        private void LimparCampos()
+        // Disparado pelo AutoPostBack do ddlClasse
+        protected void ddlClasse_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int idClasse = Convert.ToInt32(ddlClasse.SelectedValue);
+            PreencherDDLSubclasse(idClasse);
         }
 
         protected void Cadastrar()
         {
-
-            //atributos
-
+            // Atributos
             string forca = txtForca.Text;
             string destreza = txtDestreza.Text;
             string sabedoria = txtSabedoria.Text;
@@ -73,11 +102,9 @@ namespace CRUDGameSolution.Pages
                 novoAtributo.Inteligencia = Convert.ToInt32(inteligencia);
                 novoAtributo.Carisma = Convert.ToInt32(carisma);
 
-                string mensagem =
-                    DAOs.AtributoDAO.CadastrarAtributo(novoAtributo);
+                string mensagem = DAOs.AtributoDAO.CadastrarAtributo(novoAtributo);
 
-
-                //aparencia
+                // Aparência
                 string peso = txtPeso.Text;
                 string altura = txtAltura.Text;
                 string corCabelo = txtCorCabelo.Text;
@@ -99,37 +126,32 @@ namespace CRUDGameSolution.Pages
 
                     mensagem = DAOs.AparenciaDAO.CadastrarAparencia(novaAparencia);
 
-                    //personagem
+                    // Personagem
                     string nome = txtNome.Text;
                     string nivel = txtNivel.Text;
                     string sexo = txtSexo.Text;
+
                     int indexRaca = ddlRaca.SelectedIndex;
+                    int indexClasse = ddlClasse.SelectedIndex;
                     int indexSubclasse = ddlSubclasse.SelectedIndex;
 
-
-                    //CORRIGIR O FLUXO DA DDL
-                    if (indexRaca == 0 || indexSubclasse == 0)
+                    if (indexRaca == 0 || indexClasse == 0 || indexSubclasse == 0)
                     {
-
-                        lblMensagem.Text =
-                               "Você precisa selecionar Raça e Subclasse!";
+                        lblMensagem.Text = "Você precisa selecionar Raça, Classe e Subclasse!";
                         return;
                     }
 
                     if (nome != "" && nivel != "" && sexo != "")
                     {
-                       
                         Personagem novoPersonagem = new Personagem();
 
                         novoPersonagem.Nome = nome;
                         novoPersonagem.Nivel = Convert.ToInt32(nivel);
                         novoPersonagem.Sexo = sexo;
 
-                        int idRaca = Convert.ToInt32(ddlRaca.SelectedValue);
-                        novoPersonagem.idRaca = idRaca;
-
-                        int idSubclasse = Convert.ToInt32(ddlSubclasse.SelectedValue);
-                        novoPersonagem.idSubclasse = idSubclasse;
+                        novoPersonagem.idRaca = Convert.ToInt32(ddlRaca.SelectedValue);
+                        novoPersonagem.idSubclasse = Convert.ToInt32(ddlSubclasse.SelectedValue);
+                        // ddlClasse NÃO é salvo — a classe já está implícita via FK na subclasse
 
                         novoPersonagem.idAtributo = novoAtributo.idAtributo;
                         novoPersonagem.idAparencia = novaAparencia.idAparencia;
@@ -139,7 +161,6 @@ namespace CRUDGameSolution.Pages
                         lblMensagem.Text = "PERSONAGEM CADASTRADO COM SUCESSO!";
                     }
                 }
-
             }
         }
 

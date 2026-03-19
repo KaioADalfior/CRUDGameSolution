@@ -30,6 +30,14 @@ namespace CRUDGameSolution.DAOs
             return mensagem;
         }
 
+        public static List<Subclasse> ListarSubclassesPorClasse(int idClasse)
+        {
+            using(var ctx = new RPGDBEntities())
+            {
+                return ctx.Subclasses.Where(x => x.idClasse == idClasse).ToList();
+            }
+        }
+
         public static List<Subclasse> ListarSubclasses()
         {
             List<Subclasse> lista = null;

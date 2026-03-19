@@ -140,6 +140,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RPGModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Pages\FrmCartas.aspx" />
     <Content Include="Pages\FrmClasse.aspx" />
     <Content Include="Pages\FrmHabilidade.aspx" />
     <Content Include="Pages\FrmPersonagem.aspx" />
@@ -238,6 +239,13 @@
     </Compile>
     <Compile Include="Habilidade.cs">
       <DependentUpon>RPGModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FrmCartas.aspx.cs">
+      <DependentUpon>FrmCartas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\FrmCartas.aspx.designer.cs">
+      <DependentUpon>FrmCartas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\FrmClasse.aspx.cs">
       <DependentUpon>FrmClasse.aspx</DependentUpon>

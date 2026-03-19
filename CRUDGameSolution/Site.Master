@@ -1,28 +1,72 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CRUDGameSolution.SiteMaster" %>
 
 <!DOCTYPE html>
-
 <html lang="pt">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Meu aplicativo ASP.NET</title>
-
+    <title><%: Page.Title %> - RPG de Cartas</title>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <style>
+        body {
+            background-color: #12121f;
+            color: #ddd;
+        }
+        .navbar-inverse {
+            background-color: #0d0d1a;
+            border-color: #c9a84c;
+        }
+        .navbar-inverse .navbar-brand {
+            color: #c9a84c;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .navbar-inverse .navbar-brand:hover {
+            color: #e8c96a;
+        }
+        .navbar-inverse .nav > li > a {
+            color: #cccccc;
+        }
+        .navbar-inverse .nav > li > a:hover {
+            color: #c9a84c;
+            background-color: transparent;
+        }
+        .navbar-inverse .nav > li.active > a {
+            background-color: #c9a84c;
+            color: #0d0d1a;
+        }
+        .navbar-inverse .dropdown-menu {
+            background-color: #1a1a2e;
+            border-color: #333;
+        }
+        .navbar-inverse .dropdown-menu > li > a {
+            color: #cccccc;
+        }
+        .navbar-inverse .dropdown-menu > li > a:hover {
+            background-color: #c9a84c;
+            color: #0d0d1a;
+        }
+        .container.body-content {
+            padding-top: 80px;
+        }
+        footer p {
+            color: #666;
+            text-align: center;
+        }
+        hr {
+            border-color: #2a2a3e;
+        }
+    </style>
 </head>
 <body>
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="bootstrap" />
@@ -35,7 +79,6 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
 
@@ -47,26 +90,62 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Nome do aplicativo</a>
+                    <a class="navbar-brand" runat="server" href="~/">
+                        <span class="glyphicon glyphicon-book"></span> RPG de Cartas
+                    </a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Página inicial</a></li>
-                        <li><a runat="server" href="~/About">Sobre</a></li>
-                        <li><a runat="server" href="~/Contact">Contato</a></li>
+
+                        <!-- MENU CADASTROS -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                <span class="glyphicon glyphicon-cog"></span> Cadastros
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a runat="server" href="~/Pages/FrmRaca.aspx">
+                                        <span class="glyphicon glyphicon-globe"></span> Raças
+                                    </a>
+                                </li>
+                                <li>
+                                    <a runat="server" href="~/Pages/FrmClasse.aspx">
+                                        <span class="glyphicon glyphicon-education"></span> Classes
+                                    </a>
+                                </li>
+                                <li>
+                                    <a runat="server" href="~/Pages/FrmSubclasse.aspx">
+                                        <span class="glyphicon glyphicon-th-list"></span> Subclasses
+                                    </a>
+                                </li>
+                                <li>
+                                    <a runat="server" href="~/Pages/FrmHabilidade.aspx">
+                                        <span class="glyphicon glyphicon-flash"></span> Habilidades
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a runat="server" href="~/Pages/FrmPersonagem.aspx">
+                                        <span class="glyphicon glyphicon-knight"></span> Personagens
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a runat="server" href="~/Pages/FrmCartas.aspx">Cartas</a></li>
                     </ul>
                 </div>
             </div>
         </div>
+
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Meu aplicativo ASP.NET</p>
+                <p>&copy; <%: DateTime.Now.Year %> — RPG de Cartas. Feito para aventureiros.</p>
             </footer>
         </div>
-
     </form>
 </body>
 </html>
